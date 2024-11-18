@@ -1,0 +1,106 @@
+.elements {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  margin: 0px;
+}
+.element {
+  box-sizing: border-box;
+  background-color: white;
+  border-color: black;
+  border-radius: 10px;
+  margin: 0;
+  display: inline-block;
+}
+
+.element__img {
+  width: 100%;
+  object-fit: cover;
+  width: 282px;
+  height: 282px;
+  border-radius: 2%;
+}
+
+.element_text-like {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+}
+.element__text {
+  margin: auto 3%;
+  max-width: 200px;
+  color: black;
+
+  padding: 1px;
+}
+.element__name {
+  font-size: 20px;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: black;
+  margin: 0;
+}
+.element__likes {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #00000000;
+  border-style: none;
+  box-sizing: border-box;
+  padding-right: 30px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: flex-end;
+  background-image: url(../images/like.jpg);
+}
+.element__likes_active {
+  background-image: url(../images/darklike.jpg);
+}
+
+.element__likes:hover {
+  opacity: 50%;
+}
+
+.element__trash {
+  width: 280px;
+  display: flex;
+  position: absolute;
+  justify-content: flex-end;
+
+  border-style: none;
+}
+.element__trash_icon {
+  opacity: 100%;
+  width: 8%;
+}
+.element__trash_icon:hover {
+  opacity: 60%;
+  width: 10%;
+}
+
+@media screen and (max-width: 768px) {
+  .elements {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  .element__img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .elements {
+    width: 90%;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content;
+  }
+}
