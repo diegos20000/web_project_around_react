@@ -1,16 +1,17 @@
 import React from "react";
+import closeIcon from "../../images/Close Icon.jpg";
 
 export default function EditAvatar(onClose) {
   return (
     <div className="pop-up__container">
-      <button class="pop-up__close-button">
-        <img src="./images/Close Icon.jpg" alt="Pop up close icon" />
+      <button className="pop-up__close-button">
+        <img src={closeIcon} alt="Pop up close icon" />
       </button>
-      <form class="popup__form" id="popUp-Form">
-        <h3 class="pop-up__title">Cambiar foto de perfil</h3>
-        <fieldset class="pop-up__input-container">
+      <form className="popup__form" id="popUp-Form">
+        <h3 className="pop-up__title">Cambiar foto de perfil</h3>
+        <fieldset className="pop-up__input-container">
           <input
-            class="pop-up__form-item pop-up__form-item-about popup__input"
+            className="pop-up__form-item pop-up__form-item-about popup__input"
             type="url"
             placeholder="URL de la imagen"
             id="link"

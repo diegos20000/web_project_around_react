@@ -1,13 +1,15 @@
 import React from "react";
-import Logo from "./images/Vector";
+import Logo from "../../images/Vector.jpg";
 
 const Header = () => {
   return (
-    <header class="header">
-      <p class="header__title">
+    <header className="header">
+      <p className="header__title">
         <img src={Logo} alt="Around The U.S." />
       </p>
-      <hr class="header__hr" />
+      <hr className="header__hr" />
     </header>
   );
 };
+
+export default Header;

@@ -1,5 +1,5 @@
 import React from "react";
-import closeButton from "./images/closeButton";
+import closeButton from "../../images/Close Icon.jpg";
 
 export default function ImagePopup(card, onClose) {
   return (
@@ -20,7 +20,7 @@ export default function ImagePopup(card, onClose) {
           />
           <h3 className="popup_title-img">{card?.name}</h3>
         </div>
-        <div class="popup__overlay"></div>
+        <div className="popup__overlay"></div>
       </div>
     </div>
   );

@@ -1,23 +1,36 @@
 import React from "react";
-import trashButton from "./images/trashButton";
+import trashButton from "../../images/trashicons.jpg";
+import { useState } from "react";
 
 export default function Card(props) {
-  const { name, link, isLiked } = props.card;
+  const [card, setCard] = useState(props.card);
+  const [isSelected, setIsSelected] = useState(false);
+
+  if (!card) {
+    return null;
+  }
+
+  const { name, link, isLiked, _id, likes = [] } = card;
 
   function handleClick() {
-    onCardClick(cardData);
+    props.onCardClick(card);
   }
 
   function handleLikeClick() {
-    onCardLike(cardData);
+    props.onCardLike(card);
   }
 
   function handleCardDelete() {
-    onCardDelete(cardData);
+    props.onCardDelete(card);
   }
 
+  const cardDeleteButtonClassName = "element__button-trash";
+  const CardLikeButtonClassName = isLiked
+    ? "element__button-like_active"
+    : "element__button-like";
+
   return (
-    <div className="element" key={cardData._id}>
+    <div className="card" key={_id}>
       <button
         type="button"
         className={cardDeleteButtonClassName}
@@ -30,20 +43,20 @@ export default function Card(props) {
         />
       </button>
       <img
-        src={cardData.link}
+        src={link}
         className="element__img"
-        alt={`imagen de ${cardData.name}`}
+        alt={`imagen de ${name}`}
         onClick={handleClick}
       />
       <div className="element_text-like">
-        <div class="element__text">
-          <p class="element__name">{cardData.name}</p>
+        <div className="element__text">
+          <p className="element__name">{name}</p>
         </div>
         <button
           className={CardLikeButtonClassName}
           onClick={handleLikeClick}
         ></button>
-        <p className="element__counter">{cardData.likes.length}</p>
+        <p className="element__counter">{likes.length}</p>
       </div>
     </div>
   );

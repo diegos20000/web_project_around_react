@@ -1,40 +1,41 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-
-import logo from "./images/Vector.jpg";
-import avatar from "./images/avatar pic.jpeg";
-
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header/Header.jsx";
-import Main from "./Main/main.jsx";
+import Main from "./Main.jsx";
+import Card from "./Card/Card.jsx";
+import ImagePopup from "./ImagePopup/ImagePopup.jsx";
 import Footer from "./Footer/Footer.jsx";
+import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import "../../index.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const cards = [
+    {
+      isLiked: false,
+      _id: "5d1f0611d321eb4bdcd707dd",
+      name: "Yosemite Valley",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+      owner: "5d1f0611d321eb4bdcd707dd",
+      createdAt: "2019-07-05T08:10:57.741Z",
+    },
+    {
+      isLiked: false,
+      _id: "5d1f064ed321eb4bdcd707de",
+      name: "Lake Louise",
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+      owner: "5d1f0611d321eb4bdcd707dd",
+      createdAt: "2019-07-05T08:11:58.324Z",
+    },
+  ];
+
+  console.log(cards);
 
   return (
     <>
       <div className="page">
-        <template id="card__template">
-          <div class="element">
-            <div class="element__trash">
-              <img
-                class="element__trash_icon"
-                src="./images/trashnuevo.svg"
-                alt="trash icon"
-              />
-            </div>
-            <img src="" class="element__img" />
-            <div class="element_text-like">
-              <div class="element__text">
-                <p class="element__name"></p>
-              </div>
-              <button class="element__likes"></button>
-              <p class="element__counter">0</p>
-            </div>
-          </div>
-        </template>
+        <Header></Header>
+        <Main cards={cards}></Main>
+
+        <Footer></Footer>
       </div>
     </>
   );
