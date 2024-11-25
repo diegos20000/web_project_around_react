@@ -1,6 +1,6 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es creado con React y Vite, utilizando camelCase para los nombres y variables, diseñada para explorar las funcionalidades fundamentales de React usando JSX.
 
 Currently, two official plugins are available:
 

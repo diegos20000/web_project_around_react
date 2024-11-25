@@ -1,6 +1,6 @@
 import React from "react";
 import editButton from "../images/Edit Button.jpg";
-import trashButton from "../images/trashicons.jpg";
+import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
 
 import Card from "./Card/Card.jsx";

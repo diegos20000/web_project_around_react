@@ -1,5 +1,5 @@
 import React from "react";
-import trashButton from "../../images/trashicons.jpg";
+import trashButton from "../../images/trashicons.png";
 import { useState } from "react";
 
 export default function Card(props) {
