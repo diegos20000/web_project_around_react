@@ -7,7 +7,7 @@ export default function PopupWithForm(props) {
       <div className="popup__container">
         <button className="pop-up__close-button">
           <img
-            class="popup__close"
+            className="popup__close"
             src="./images/Close Icon.jpg"
             alt="close icon"
           />

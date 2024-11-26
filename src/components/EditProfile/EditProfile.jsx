@@ -1,10 +1,8 @@
-import React from "react";
-
 export default function EditProfile(onClose) {
   return (
     <div className="popup__card">
       <h3 className="popup__title">Editar perfil</h3>
-      <form className="popup__form" novalidate id="form-profile">
+      <form className="popup__form" noValidate id="form-profile">
         <input
           className="popup__input popup__text_title"
           type="text"

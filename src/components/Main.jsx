@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Children } from "react";
 import editButton from "../images/Edit Button.jpg";
 import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
+import AddPlacePopup from "./AddPlacePopup.jsx";
 
 import Card from "./Card/Card.jsx";
 import { useState, useEffect, useContext } from "react";
@@ -10,18 +11,27 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 export default function Main({
   onEditAvatarClick,
   onAddPlaceClick,
-  onEditProfileClick,
+
   cards,
   onCardLike,
   onCardDelete,
   onCardClick,
 }) {
-  const currentUser = {};
-  /*const currentUser = useContext(CurrentUserContext);
+  const [Popup, setPopup] = useState(null);
+  const newCardPopup = {
+    title: "Nuevo Lugar",
+    Children: <AddPlacePopup onClose={handleClosePopup} />,
+  };
 
-  if (!currentUser) {
-    return null;
-  }*/
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
+  function handleClosePopup() {
+    setPopup(null);
+  }
+
+  const currentUser = {};
 
   return (
     <main className="content">
@@ -43,7 +53,7 @@ export default function Main({
               className="group__button"
               type="button"
               id="open-popup"
-              onClick={onEditProfileClick}
+              onClick={() => handleOpenPopup(newCardPopup)}
             >
               <img src={editButton} alt="Edit button" />{" "}
             </button>
@@ -73,6 +83,11 @@ export default function Main({
           />
         ))}
       </div>
+      {Popup && (
+        <Popup onClose={handleClosePopup} title={Popup.title}>
+          {Popup.children}
+        </Popup>
+      )}
     </main>
   );
 }
