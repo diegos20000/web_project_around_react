@@ -1,52 +1,61 @@
 import React from "react";
 import closeButton from "../images/Close Icon.jpg";
+import FormValidator from "./FormValidator";
 
 export default function PopupWithForm(props) {
+  const settings = {
+    formProfile: ".popup__form",
+    popupText: ".popup__input",
+    popupSaveButton: ".popup__submit-btn",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible",
+  };
+
+  const formRef = React.useRef();
+
+  //React.useEffect(() => {
+  // const formValidator = new FormValidator(settings, formRef.current);
+  // formValidator.enableValidation();
+  // }, [formRef]);
+
+  const handleClickOut = (evt) => {
+    if (evt.target.classList.contains("pop-up")) {
+      props.onClose();
+    }
+  };
+
   return (
-    <div className="popup" id="popup__edit">
-      <div className="popup__container">
-        <button className="pop-up__close-button">
-          <img
-            className="popup__close"
-            src="./images/Close Icon.jpg"
-            alt="close icon"
-          />
-        </button>
-        <div className="popup__card">
-          <h3 className="popup__title">Editar perfil</h3>
-          <form className="popup__form" novalidate id="form-profile">
-            <input
-              className="popup__input popup__text_title"
-              type="text"
-              placeholder="Nombre"
-              minlength="2"
-              maxlength="40"
-              id="popup__input popup__input_name"
-              name="name"
-              required
-            />
-            <span className="popup__input-error popup__input_name-error"></span>
-            <input
-              className="popup__input popup__text_about"
-              type="text"
-              placeholder="Acerca de mí"
-              minlength="2"
-              maxlength="40"
-              id="popup__input popup__input_about"
-              name="about"
-              required
-            />
-            <span className="popup__input-error popup__input_about-error"></span>
-            <button
-              className="popup__submit-btn popup__submit-btn_action_add pop-up__save-button"
-              type="submit"
+    <section
+      onClick={handleClickOut}
+      className={`popup ${props.isOpen ? "active" : ""}`}
+    >
+      <div className="popup" id="popup__edit">
+        <div className="popup__container">
+          <button className="pop-up__close-button" onClick={props.onClose}>
+            <img className="popup__close" src={closeButton} alt="close icon" />
+          </button>
+          <div className="popup__card">
+            <form
+              className="popup__form"
+              noValidate
+              id="form-profile"
+              ref={formRef}
+              onSubmit={props.onSubmit}
             >
-              Guardar
-            </button>
-          </form>
+              <h3 className="popup__title">{props.title}</h3>
+              {props.children}
+              <button
+                className="popup__submit-btn popup__submit-btn_action_add pop-up__save-button"
+                type="submit"
+              >
+                {props.buttonText}
+              </button>
+            </form>
+          </div>
         </div>
+        <div className="popup__overlay" onClick={props.onClose}></div>
       </div>
-      <div className="popup__overlay"></div>
-    </div>
+    </section>
   );
 }

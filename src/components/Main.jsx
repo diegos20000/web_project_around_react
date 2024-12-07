@@ -1,37 +1,24 @@
-import React, { Children } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import editButton from "../images/Edit Button.jpg";
 import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
 import AddPlacePopup from "./AddPlacePopup.jsx";
 
 import Card from "./Card/Card.jsx";
-import { useState, useEffect, useContext } from "react";
+
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import EditProfile from "./EditProfile/EditProfile.jsx";
 
 export default function Main({
   onEditAvatarClick,
+  onEditProfileClick,
   onAddPlaceClick,
-
   cards,
+  onCardClick,
   onCardLike,
   onCardDelete,
-  onCardClick,
 }) {
-  const [Popup, setPopup] = useState(null);
-  const newCardPopup = {
-    title: "Nuevo Lugar",
-    Children: <AddPlacePopup onClose={handleClosePopup} />,
-  };
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-
-  function handleClosePopup() {
-    setPopup(null);
-  }
-
-  const currentUser = {};
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -39,7 +26,7 @@ export default function Main({
         className="profile"
         id="profile__avatar_update"
         onClick={onEditAvatarClick}
-        style={{ backgroundImage: `url(${currentUser.avatar})` }}
+        //style={{ backgroundImage: `url(${currentUser.avatar})` }}
       >
         <img
           src={currentUser.avatar}
@@ -53,12 +40,12 @@ export default function Main({
               className="group__button"
               type="button"
               id="open-popup"
-              onClick={() => handleOpenPopup(newCardPopup)}
+              onClick={onEditProfileClick}
             >
-              <img src={editButton} alt="Edit button" />{" "}
+              <img src={editButton} alt="Edit button" />
             </button>
           </div>
-          <p className="profile__exp">{currentUser.about}</p>{" "}
+          <p className="profile__exp">{currentUser.about}</p>
         </section>
         <button
           className="profile__addbutton"
@@ -77,17 +64,12 @@ export default function Main({
           <Card
             key={card._id}
             card={card}
-            onCardClick={onCardClick}
+            onCardClick={() => onCardClick(card)}
             onCardLike={onCardLike}
-            onCardDelete={onCardDelete}
+            onCardDelete={() => onCardDelete(card)}
           />
         ))}
       </div>
-      {Popup && (
-        <Popup onClose={handleClosePopup} title={Popup.title}>
-          {Popup.children}
-        </Popup>
-      )}
     </main>
   );
 }

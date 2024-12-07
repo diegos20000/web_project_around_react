@@ -1,33 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import trashButton from "../../images/trashicons.png";
-import { useState } from "react";
+
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Card(props) {
-  const [card, setCard] = useState(props.card);
-  const [isSelected, setIsSelected] = useState(false);
+  const { card, onCardClick, onCardLike, onCardDelete } = props;
+  const currentUser = useContext(CurrentUserContext);
 
   if (!card) {
     return null;
   }
 
-  const { name, link, isLiked, _id, likes = [] } = card;
+  const { name, link, _id, likes = [] } = card;
+
+  const isLiked = likes.some((i) => i._id === currentUser._id);
+
+  const CardLikeButtonClassName = `element__button-like ${
+    isLiked ? "element__button-like_active" : ""
+  }`;
+
+  const cardDeleteButtonClassName = "element__button-trash";
 
   function handleClick() {
-    props.onCardClick(card);
+    onCardClick(card);
   }
 
   function handleLikeClick() {
-    props.onCardLike(card);
+    onCardLike(card);
   }
 
   function handleCardDelete() {
-    props.onCardDelete(card);
+    if (onCardDelete && typeof onCardDelete === "function") {
+      onCardDelete(card);
+    } else {
+      console.error("onCardDelete is not a function");
+    }
   }
-
-  const cardDeleteButtonClassName = "element__button-trash";
-  const CardLikeButtonClassName = isLiked
-    ? "element__button-like_active"
-    : "element__button-like";
 
   return (
     <div className="card" key={_id}>

@@ -3,8 +3,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
-  margin: 0px;
+  gap: 20px 18px;
+  margin: 0px auto;
 }
 .card {
   box-sizing: border-box;
@@ -21,6 +21,7 @@
   width: 282px;
   height: 282px;
   border-radius: 2%;
+  background-color: #000;
 }
 
 .element_text-like {
@@ -45,6 +46,8 @@
   white-space: nowrap;
   color: black;
   margin: 0;
+  max-width: 215px;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 .element__button-like {
   background-size: contain;
@@ -66,6 +69,7 @@
 
 .element__button-like:hover {
   opacity: 50%;
+  cursor: pointer;
 }
 
 .element__button-trash {
@@ -75,14 +79,15 @@
   justify-content: flex-end;
   cursor: pointer;
   border: none;
-  background: none;
+  background-color: transparent;
 }
 .element__button-trash-img {
-  opacity: 100%;
-  width: 25px;
+  width: 18px;
+  height: 19px;
 }
 .element__button-trash-img:hover {
   opacity: 60%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
