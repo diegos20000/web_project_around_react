@@ -122,6 +122,8 @@ function App() {
 
   const handleUpdateAvatar = (data) => {
     console.log("Actualizando avatar:", data);
+    setCurrentUser((prevUser) => ({ ...prevUser, avatar: data.avatar }));
+    closeAllPopups();
   };
 
   function onUpdateUser(user) {

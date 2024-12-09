@@ -25,13 +25,13 @@ export default function Main({
       <div
         className="profile"
         id="profile__avatar_update"
-        onClick={onEditAvatarClick}
         //style={{ backgroundImage: `url(${currentUser.avatar})` }}
       >
         <img
           src={currentUser.avatar}
           alt="Avatar de usuario"
           className="profile__img"
+          onClick={onEditAvatarClick}
         />
         <section className="profile__info">
           <div className="group">

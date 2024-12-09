@@ -30,32 +30,30 @@ export default function PopupWithForm(props) {
       onClick={handleClickOut}
       className={`popup ${props.isOpen ? "active" : ""}`}
     >
-      <div className="popup" id="popup__edit">
-        <div className="popup__container">
-          <button className="pop-up__close-button" onClick={props.onClose}>
-            <img className="popup__close" src={closeButton} alt="close icon" />
-          </button>
-          <div className="popup__card">
-            <form
-              className="popup__form"
-              noValidate
-              id="form-profile"
-              ref={formRef}
-              onSubmit={props.onSubmit}
+      <div className="popup__container">
+        <button className="pop-up__close-button" onClick={props.onClose}>
+          <img className="popup__close" src={closeButton} alt="close icon" />
+        </button>
+        <div className="popup__card">
+          <form
+            className="popup__form"
+            noValidate
+            id="form-profile"
+            ref={formRef}
+            onSubmit={props.onSubmit}
+          >
+            <h3 className="popup__title">{props.title}</h3>
+            {props.children}
+            <button
+              className="popup__submit-btn popup__submit-btn_action_add pop-up__save-button"
+              type="submit"
             >
-              <h3 className="popup__title">{props.title}</h3>
-              {props.children}
-              <button
-                className="popup__submit-btn popup__submit-btn_action_add pop-up__save-button"
-                type="submit"
-              >
-                {props.buttonText}
-              </button>
-            </form>
-          </div>
+              {props.buttonText}
+            </button>
+          </form>
         </div>
-        <div className="popup__overlay" onClick={props.onClose}></div>
       </div>
+      <div className="popup__overlay" onClick={props.onClose}></div>
     </section>
   );
 }
