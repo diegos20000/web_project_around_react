@@ -5,7 +5,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 export default function EditProfile({ onClose, isOpen, onUpdateUser }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [buttonText, setButtonText] = useState("guardar");
+  const [buttonText, setButtonText] = useState("Guardar");
   const currentUser = useContext(CurrentUserContext);
 
   function handleChangeName(e) {

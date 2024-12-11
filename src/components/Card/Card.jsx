@@ -60,11 +60,13 @@ export default function Card(props) {
         <div className="element__text">
           <p className="element__name">{name}</p>
         </div>
-        <button
-          className={CardLikeButtonClassName}
-          onClick={handleLikeClick}
-        ></button>
-        <p className="element__counter">{likes.length}</p>
+        <div>
+          <button
+            className={CardLikeButtonClassName}
+            onClick={handleLikeClick}
+          ></button>
+          <p className="element__counter">{likes.length}</p>
+        </div>
       </div>
     </div>
   );

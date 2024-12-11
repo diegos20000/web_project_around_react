@@ -127,7 +127,7 @@ function App() {
   };
 
   function onUpdateUser(user) {
-    setCurrentUser(user);
+    setCurrentUser((prevUser) => ({ ...prevUser, ...user }));
     closeAllPopups();
   }
 

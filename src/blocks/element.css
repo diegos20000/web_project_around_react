@@ -1,19 +1,22 @@
 .elements {
   width: 100%;
+  max-width: 882px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 20px 18px;
-  margin: 0px auto;
+  margin: 70px auto;
 }
 .card {
   box-sizing: border-box;
   background-color: white;
-  border-color: black;
+  border-color: #fff;
   border-radius: 10px;
   margin: 0;
   display: inline-block;
   position: relative;
+  width: 282px;
+  overflow: hidden;
 }
 
 .element__img {
@@ -28,19 +31,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  width: 100%;
   padding: 10px;
 }
 .element__text {
   margin: auto 3%;
-  max-width: 200px;
-  color: black;
 
+  color: black;
+  width: 80%;
   padding: 1px;
 }
 .element__name {
   font-size: 20px;
   font-weight: 900;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -56,10 +62,11 @@
   background-color: #00000000;
   border-style: none;
   box-sizing: border-box;
-  padding-right: 30px;
-  width: 20px;
-  height: 20px;
-  display: flex;
+  margin-right: 20px;
+  width: 22px;
+  height: 19px;
+  padding-top: 20px;
+  cursor: pointer;
   justify-content: flex-end;
   background-image: url(../images/like.jpg);
 }
@@ -72,6 +79,18 @@
   cursor: pointer;
 }
 
+.element__counter {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1px;
+  text-align: center;
+  color: black;
+
+  margin-left: -20px;
+}
+
 .element__button-trash {
   width: 280px;
   display: flex;
@@ -82,30 +101,39 @@
   background-color: transparent;
 }
 .element__button-trash-img {
-  width: 18px;
-  height: 19px;
+  width: 25px;
+  height: 25px;
 }
 .element__button-trash-img:hover {
   opacity: 60%;
   cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 968px) {
   .elements {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
   .element__img {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 700px) {
   .elements {
-    width: 90%;
-    margin: 0 auto;
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 60px;
+
     grid-template-columns: 1fr;
     grid-template-rows: max-content;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .elements {
+    margin-right: 100px;
+    margin-left: 15px;
+    width: 30%;
   }
 }

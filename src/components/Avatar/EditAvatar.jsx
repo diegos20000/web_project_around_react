@@ -24,13 +24,13 @@ export default function EditAvatar({ onClose, isOpen, onUpdateAvatar }) {
   return (
     <PopupWithForm
       title="Cambiar foto de perfil"
-      name="profile__img"
+      name="popup__card"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText={buttonText}
     >
-      <fieldset className="profile__img">
+      <fieldset className="popup__card">
         <input
           className="pop-up__form-item pop-up__form-item-about popup__input"
           type="url"

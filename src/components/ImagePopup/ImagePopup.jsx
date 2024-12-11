@@ -4,7 +4,7 @@ import closeButton from "../../images/Close Icon.jpg";
 export default function ImagePopup({ card, onClose }) {
   return (
     <div className={`popup popup__image ${card ? "active" : ""}`}>
-      <div className="popup__image-container">
+      <div className={`popup__image-container ${card ? "image-popup" : ""}`}>
         <button
           className="pop-up__close-button"
           id="popup__close_img"
