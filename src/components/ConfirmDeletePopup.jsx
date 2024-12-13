@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PopupWithForm from "./PopupWithForm";
+import PopupWithForm from "./Popup";
 
 export default function ConfirmDeletePopup({
   isOpen,

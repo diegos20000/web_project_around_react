@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import editButton from "../images/Edit Button.jpg";
 import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
-import AddPlacePopup from "./AddPlacePopup.jsx";
+import AddPlacePopup from "./popup/NewCard/NewCard.jsx";
 import api from "../utils/api.js";
-import Card from "./Card/Card.jsx";
+import Card from "./popup/Card/Card.jsx";
 
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import EditProfile from "./EditProfile/EditProfile.jsx";
+import EditProfile from "./popup/EditProfile/EditProfile.jsx";
 
 export default function Main({
   onEditAvatarClick,

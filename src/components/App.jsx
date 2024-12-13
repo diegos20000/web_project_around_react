@@ -3,11 +3,11 @@ import Header from "./Header/Header.jsx";
 import Main from "./Main.jsx";
 import api from "../utils/api.js";
 import ConfirmDeletePopup from "./ConfirmDeletePopup.jsx";
-import ImagePopup from "./ImagePopup/ImagePopup.jsx";
-import EditProfile from "./EditProfile/EditProfile.jsx";
-import EditAvatar from "./Avatar/EditAvatar.jsx";
-import AddPlacePopup from "./AddPlacePopup.jsx";
-import Footer from "./Footer/Footer.jsx";
+import ImagePopup from "./popup/ImagePopup/ImagePopup.jsx";
+import EditProfile from "./popup/EditProfile/EditProfile.jsx";
+import EditAvatar from "./popup/Avatar/EditAvatar.jsx";
+import AddPlacePopup from "./popup/NewCard/NewCard.jsx";
+import Footer from "./footer/Footer.jsx";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 function App() {
