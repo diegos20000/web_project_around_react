@@ -113,6 +113,7 @@
   .elements {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
   }
   .element__img {
     width: 100%;

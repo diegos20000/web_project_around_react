@@ -3,7 +3,7 @@ import editButton from "../images/Edit Button.jpg";
 import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
 import AddPlacePopup from "./AddPlacePopup.jsx";
-
+import api from "../utils/api.js";
 import Card from "./Card/Card.jsx";
 
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
@@ -19,13 +19,16 @@ export default function Main({
   onCardDelete,
 }) {
   const currentUser = useContext(CurrentUserContext);
+  if (!currentUser) {
+    return null;
+  }
 
   return (
     <main className="content">
       <div
         className="profile"
         id="profile__avatar_update"
-        //style={{ backgroundImage: `url(${currentUser.avatar})` }}
+        style={{ backgroundImage: `url(${currentUser.avatar})` }}
       >
         <img
           src={currentUser.avatar}

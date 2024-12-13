@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "./Header/Header.jsx";
 import Main from "./Main.jsx";
-import Card from "./Card/Card.jsx";
+import api from "../utils/api.js";
 import ConfirmDeletePopup from "./ConfirmDeletePopup.jsx";
 import ImagePopup from "./ImagePopup/ImagePopup.jsx";
 import EditProfile from "./EditProfile/EditProfile.jsx";
@@ -16,40 +16,20 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
-  //const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState(null);
-  const [currentUser, setCurrentUser] = useState({
-    name: "Diego Rodrigo Cano",
-    about: "Web Developer Junior",
-    avatar:
-      "https://media.licdn.com/dms/image/v2/C4E03AQEgdIWRh2TM9Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1613487742717?e=1738800000&v=beta&t=iZfGysB4ySqFIfoveiW0m22UBCVVHzL6MLLIRXLGZMM",
-  });
-
-  const [cards, setCards] = useState([
-    {
-      isLiked: false,
-      _id: "5d1f0611d321eb4bdcd707dd",
-      name: "Yosemite Valley",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-      owner: "5d1f0611d321eb4bdcd707dd",
-      createdAt: "2019-07-05T08:10:57.741Z",
-      likes: [],
-    },
-    {
-      isLiked: false,
-      _id: "5d1f064ed321eb4bdcd707de",
-      name: "Lake Louise",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-      owner: "5d1f0611d321eb4bdcd707dd",
-      createdAt: "2019-07-05T08:11:58.324Z",
-      likes: [],
-    },
-  ]);
-
-  console.log(cards);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
+    api
+      .getUserInfo()
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        console.error(`Error obteniendo los datos del usuario: ${err}`);
+      });
     const handleEscKey = (evt) => {
       if (evt.key === "Escape") {
         closeAllPopups();
@@ -74,61 +54,80 @@ function App() {
     setIsDeletePopupOpen(true);
   }
 
+  useEffect(() => {
+    api.getInitialCards().then((res) => {
+      setCards(res);
+    });
+  }, []);
+
   function handleCardLike(card) {
     const likes = card.likes || [];
     const isLiked = likes.some((i) => i._id === currentUser._id);
-    const updatedCards = cards.map((c) => {
-      if (c._id === card._id) {
-        return {
-          ...c,
-          likes: isLiked
-            ? likes.filter((i) => i._id !== currentUser._id)
-            : [...likes, currentUser],
-        };
-      }
-      return c;
-    });
-    setCards(updatedCards);
+    api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.error(`Error al dar/retirar like: ${err}`));
   }
-  async function handleCardDelete() {
+  async function handleCardDelete(card) {
     if (!cardToDelete) {
       return;
     }
-    setCards((prevCards) =>
-      prevCards.filter((card) => card._id !== cardToDelete._id)
-    );
-    setCardToDelete(null);
-    setIsDeletePopupOpen(false);
-  }
-  function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(true);
+    return api
+      .deleteCard(cardToDelete._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== cardToDelete._id));
+        console.log("Tarjeta eliminada correctamente");
+        closeAllPopups();
+      })
+      .catch((err) => console.error(`Error al eliminar la tarjeta: ${err}`));
   }
 
-  function handleAddPlaceSubmit({ link, name }) {
-    const newCard = {
-      _id: Date.now().toString(),
-      link,
-      name,
-      isLiked: false,
-      likes: [],
-    };
-    setCards((prevCards) => [newCard, ...prevCards]);
-    closeAllPopups();
+  async function handleAddPlaceSubmit({ link, name }) {
+    return api
+      .createCard(link, name)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.error(`Error al añadir nueva tarjeta ${err}`);
+      });
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
   }
 
-  const handleUpdateAvatar = (data) => {
-    console.log("Actualizando avatar:", data);
-    setCurrentUser((prevUser) => ({ ...prevUser, avatar: data.avatar }));
-    closeAllPopups();
+  const handleUpdateAvatar = (avatar) => {
+    api
+      .updateAvatar(avatar)
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.error(`Error al actualizar el avatar: ${err}`);
+      });
   };
 
-  function onUpdateUser(user) {
-    setCurrentUser((prevUser) => ({ ...prevUser, ...user }));
-    closeAllPopups();
+  async function onUpdateUser(name, about) {
+    return api
+      .updateUserProfile(name, about)
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.error(`Error al actualizar el perfil: ${err}`); // Si hay un error, lo mostramos en la consola;
+      });
   }
 
   function closeAllPopups() {

@@ -30,11 +30,7 @@ export default function Card(props) {
   }
 
   function handleCardDelete() {
-    if (onCardDelete && typeof onCardDelete === "function") {
-      onCardDelete(card);
-    } else {
-      console.error("onCardDelete is not a function");
-    }
+    onCardDelete(card);
   }
 
   return (

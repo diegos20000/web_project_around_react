@@ -7,6 +7,7 @@ export default function EditProfile({ onClose, isOpen, onUpdateUser }) {
   const [description, setDescription] = useState("");
   const [buttonText, setButtonText] = useState("Guardar");
   const currentUser = useContext(CurrentUserContext);
+  const userContext = useContext(CurrentUserContext);
 
   function handleChangeName(e) {
     setName(e.target.value);

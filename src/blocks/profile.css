@@ -64,7 +64,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
   .profile {
     display: flex;
     flex-direction: column;
@@ -72,7 +72,7 @@
     align-items: center;
     width: 100%;
     max-width: 769px;
-    justify-content: space-between;
+
     margin: 0px auto;
   }
   .profile__button-img {
