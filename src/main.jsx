@@ -1,5 +1,5 @@
-import "./src/pages/index.css";
-import App from "./src/components/App.jsx";
+import "./index.css";
+import App from "./components/App.jsx";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
