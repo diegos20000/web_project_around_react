@@ -9,7 +9,6 @@ import EditAvatar from "./Avatar/EditAvatar.jsx";
 import AddPlacePopup from "./AddPlacePopup.jsx";
 import Footer from "./Footer/Footer.jsx";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import "../../index.css";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
