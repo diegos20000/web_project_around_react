@@ -4,7 +4,7 @@ import trashButton from "../images/trashicons.png";
 import addButton from "../images/Rectangle.jpg";
 import AddPlacePopup from "./popup/NewCard/NewCard.jsx";
 import api from "../utils/api.js";
-import Card from "./popup/Card/Card.jsx";
+import Card from "./Card/Card.jsx";
 
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfile from "./popup/EditProfile/EditProfile.jsx";
