@@ -2,7 +2,7 @@ import React from "react";
 import closeButton from "../../../../images/Close Icon.jpg";
 import FormValidator from "../../../FormValidator";
 
-export default function PopupWithForm(props) {
+export default function Popup(props) {
   const settings = {
     formProfile: ".popup__form",
     popupText: ".popup__input",
