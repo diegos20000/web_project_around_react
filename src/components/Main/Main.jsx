@@ -74,6 +74,7 @@ export default function Main({
           />
         ))}
       </div>
+      <Popup isOpen={false} />
     </main>
   );
 }
