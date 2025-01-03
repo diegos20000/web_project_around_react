@@ -5,6 +5,7 @@ import addButton from "../../images/Rectangle.jpg";
 import AddPlacePopup from "./components/Popup/NewCard/NewCard.jsx";
 import api from "../../utils/api.js";
 import Card from "./components/Card/Card.jsx";
+import Popup from "./components/Popup/Popup.jsx";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import EditProfile from "../Main/components/Popup/EditProfile/EditProfile.jsx";

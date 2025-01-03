@@ -1,6 +1,6 @@
 import React from "react";
 import closeButton from "../../../../images/Close Icon.jpg";
-import FormValidator from "../../../FormValidator";
+import FormValidator from "../../../../utils/FormValidator";
 
 export default function Popup(props) {
   const settings = {
