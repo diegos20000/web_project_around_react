@@ -105,7 +105,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  const handleUpdateAvatar = (avatar) => {
+  const handleUpdateAvatar = ({ avatar }) => {
     api
       .updateAvatar(avatar)
       .then((updatedUserData) => {
@@ -117,7 +117,7 @@ function App() {
       });
   };
 
-  async function onUpdateUser(name, about) {
+  async function onUpdateUser({ name, about }) {
     return api
       .updateUserProfile(name, about)
       .then((updatedUserData) => {
@@ -125,7 +125,7 @@ function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        console.error(`Error al actualizar el perfil: ${err}`); // Si hay un error, lo mostramos en la consola;
+        console.error(`Error al actualizar el perfil: ${err}`);
       });
   }
 
