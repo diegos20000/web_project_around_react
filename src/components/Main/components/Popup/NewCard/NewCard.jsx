@@ -16,6 +16,13 @@ export default function NewCard({ isOpen, onClose, onAddPlaceSubmit }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!title || !link || title.length < 2 || !isValidURL(link)) {
+      return;
+    }
+    function isValidURL(string) {
+      const res = string.match(/(http|https):\/\/[^ "]+/);
+      return res !== null;
+    }
 
     const defaultSubmitText = buttonText;
     setbuttonText("Guardando...");

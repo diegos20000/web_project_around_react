@@ -19,6 +19,9 @@ export default function EditProfile({ onClose, isOpen, onUpdateUser }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (!name || !description || name.length < 2 || description.length < 2) {
+      return;
+    }
     onClose();
     const defaultSubmitText = buttonText;
     setButtonText("Guardando...");

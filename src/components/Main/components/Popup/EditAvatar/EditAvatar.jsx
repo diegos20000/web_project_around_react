@@ -9,12 +9,22 @@ export default function EditAvatar({ onClose, isOpen, onUpdateAvatar }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    const avatarURL = avatarRef.current.value;
+    if (!isValidURL(avatarURL)) {
+      return;
+    }
+
     const defaultSubmitText = buttonText;
     setButtonText("Guardando...");
 
     await onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
+  }
+
+  function isValidURL(string) {
+    const regex = /^(https?:\/\/[^\s]+)/;
+    return regex.test(string);
   }
 
   useEffect(() => {
